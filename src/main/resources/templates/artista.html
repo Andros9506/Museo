@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/base.html :: headerfiles(title=|${artista.nome} ${artista.cognome}|)"></head>
+<body>
+
+<header th:replace="fragments/base.html :: intestazione"></header>
+
+<div class="body_interno">
+
+<nav th:replace="fragments/base.html :: nav"></nav>
+
+<div class="body_altezza">
+
+	<div class="testo_artista">
+	
+	<div th:object="${artista}">
+	
+	<div th:if="${#authorization.expression('isAuthenticated()')}"> 
+	<div>
+			<form action="#" th:object="${artista}" th:action="@{/admin/artista/{id}(id=${artista.id})}">
+			<input type="hidden" name="_method" value="update">
+		  	<button type="submit" id="submitButton">Aggiorna i dati</button>
+			</form>
+			 </div> 
+			<br>
+			 <div>
+			<form action="#" th:object="${artista}" th:action="@{/admin/deleteArtista/{id}(id=${artista.id})}" th:method="delete" >
+			<input type="hidden" name="_method" value="delete">
+		  	<button type="submit" id="submitButton">Cancella</button>
+			</form>
+			 </div>
+			 </div>
+			 <div th:unless="${#authorization.expression('isAuthenticated()')}"> </div>
+	
+			<div th:if="${artista.cognome}">
+			<h2 th:text="*{nome} + ' ' + *{cognome}">nome e cognome</h2>
+			</div>
+			<div th:unless="${artista.cognome}">
+			<h2 th:text="${artista.nome}">nome</h2>
+			</div>
+			<div><strong>Data di nascita: </strong><span th:text="*{dataNascita}"></span></div><br>
+			<div><strong>Luogo di nascita: </strong><span th:text="*{luogoNascita}"></span></div><br>
+			<div><strong>Nazionalità: </strong><span th:text="*{nazione}"></span></div><br>
+			<div><strong>Data di morte: </strong><span th:text="*{dataMorte}"></span></div><br>
+			<div><strong>Luogo di morte: </strong><span th:text="*{luogoMorte}"></span></div><br>
+			<div><strong>Biografia: </strong><span th:text="*{biografia}"></span></div><br>
+   		<div><br><br>
+   		<strong>Lista delle sue opere</strong>
+   		</div>
+   		<ul>
+   			<li th:each="opera : ${artista.opera}">
+				<a href="opera.html" 
+				   th:href="@{'/opera' + '/' + ${opera.id}}"
+				   th:text="${opera.nome}"> </a>
+				   <div><br><br></div>
+   			</li>
+   		</ul>
+    </div>
+	</div>
+</div> 
+
+    <footer th:replace="fragments/base.html :: fondo(home)"></footer>
+</div>
+</body>
+</html>

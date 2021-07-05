@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/base.html :: headerfiles(title='Collezione')"></head>
+<body>
+<header th:replace="fragments/base.html :: intestazione"></header>
+
+<div class="body_interno">
+<nav th:replace="fragments/base.html :: nav"></nav>
+
+<div class="body_altezza">
+
+<div class="collezione_testo">
+
+		<div th:if="${#authorization.expression('isAuthenticated()')}">  
+			<div>
+			<form action="#" th:object="${collezione}" th:action="@{/admin/collezione/{id}(id=${collezione.id})}">
+			<input type="hidden" name="_method" value="modifica">
+		  	<button type="submit" id="submitButton">Aggiorna i dati</button>
+			</form>
+			</div>
+			 <div>
+			<form action="#" th:object="${collezione}" th:action="@{/admin/deleteCollezione/{id}(id=${collezione.id})}" th:method="delete" >
+			<input type="hidden" name="_method" value="delete">
+		  	<button type="submit" id="submitButton">Cancella</button>
+			</form>
+			 </div>
+			 </div>
+			 <div th:unless="${#authorization.expression('isAuthenticated()')}"> </div>
+
+
+	
+    	<div th:object="${collezione}">
+    	<h1 th:text="*{nome}"></h1><br>
+			
+			<div th:if="*{curatore}">
+			<span th:text="'Collezione a cura di: '+*{curatore.nome} + ' ' +*{curatore.cognome}">curatore</span><br></div>
+			<div th:unless="*{curatore.matricola}"></div><br>
+			
+			<div th:text="*{descrizione}"></div><br>
+   		
+   		
+    	<div>
+    	
+    		<ul class="collezione_lista">
+    			<li th:each="opera : ${collezione.opera}">
+    			<img class='collezione' th:src="@{${'/images/' + opera.immagine + '.jpg'}}"/>
+    			<a href= "opera.html"
+    				th:href="@{'/opera' + '/' + ${opera.id}}"
+    				th:text="${opera.nome}">nome opera</a>
+    				<span> di: </span>
+    				<a href= "artista.html"
+    					th:href="@{'/artista' +'/' + ${opera.artista.id}}"
+    					th:text="|${opera.artista.nome} ${opera.artista.cognome}|"></a>
+    					<div><br><br></div>
+    			</li>
+    		</ul>
+    	</div>
+	</div>
+</div>
+<footer th:replace="fragments/base.html :: fondo(home)"></footer>
+</div>
+</body>
+</html>

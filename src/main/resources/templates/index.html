@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/base.html :: headerfiles(title='Museo d&#180arte')">
+</head>
+<body>
+<header th:replace="fragments/base.html :: intestazione"></header>
+
+<div class="body_interno">
+<nav th:replace="fragments/base.html :: nav"></nav>
+
+<div class="body_altezza">
+
+<h3><a th:href="@{/login}">Admin</a></h3>
+<h1><a th:href="@{/home}">Visitatore</a></h1>
+
+<div class="body_altezza">
+<footer th:replace="fragments/base.html :: fondo(home)"></footer>
+</div>
+</body>
+</html>

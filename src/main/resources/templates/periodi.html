@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/base.html :: headerfiles(title='Opere')"> </head>
+<body>
+	<header th:replace="fragments/base.html :: intestazione"></header>
+	<div class="body_interno">
+	
+	<nav th:replace="fragments/base.html :: nav"></nav>
+	
+	<div class="body_altezza">
+	
+	<div>
+		<div><h1 th:href="@{/periodi}">Opere per anno</h1></div>
+    	<br>
+		
+		
+		<ul class="lista">
+			
+		        <li th:each="string : ${anni}">
+		        <a href="opereAnno.html"
+		            th:href="@{'/opereAnno' + '/' + ${string}}"
+		            th:text="|${string}|">anno</a>
+		            <div><br><br></div>
+		          </li>
+		            
+		</ul>
+	</div>
+	</div>
+	<footer th:replace="fragments/base.html :: fondo(home)"></footer>
+	<div>
+</body>
+</html>

@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/base.html :: headerfiles(title='Collezione')"></head>
+<body>
+<header th:replace="fragments/base.html :: intestazione"></header>
+
+<div class="body_interno">
+<nav th:replace="fragments/base.html :: nav"></nav>
+
+<div class="body_altezza">
+
+	<div class="testo_artista">
+
+	<div th:object="${curatore}">
+
+		<div th:if="${#authorization.expression('isAuthenticated()')}">  
+			<div>
+			<form action="#" th:object="${curatore}" th:action="@{/admin/curatore/{id}(id=${curatore.matricola})}">
+			<input type="hidden" name="_method" value="update">
+		  	<button type="submit" id="submitButton">Aggiorna i dati</button>
+			</form>
+			 </div> 
+		<div>
+			<form action="#" th:object="${curatore}" th:action="@{/admin/deleteCuratore/{id}(id=${curatore.matricola})}" th:method="delete" >
+			<input type="hidden" name="_method" value="delete">
+		  	<button type="submit" id="submitButton">Cancella</button>
+			</form>
+			<br>
+			 </div>
+			 </div>
+			 <div th:unless="${#authorization.expression('isAuthenticated()')}"> </div>
+			
+    	
+    	<div><strong>Nome: </strong><span th:text="*{nome}"></span></div><br>
+			<div><strong>Cognome: </strong><span th:text="*{cognome}"></span></div><br>
+			<div><strong>Luogo di nascita: </strong><span th:text="*{luogoNascita}"></span></div><br>
+			<div><strong>Data di nascita: </strong><span th:text="*{dataNascita}"></span></div><br>
+			<div><strong>Email: </strong><span th:text="*{email}"></span></div><br>
+   		</div>
+    	
+	</div>
+</div>
+<footer th:replace="fragments/base.html :: fondo(home)"></footer>
+</div>
+</body>
+</html>

@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/base.html :: headerfiles(title='Museo d&#180arte')"></head>
+<body>
+
+<header th:replace="fragments/base.html :: intestazione"></header>
+
+<div class="body_interno">
+
+<nav th:replace="fragments/base.html :: nav"></nav>
+
+<div class="body_altezza">
+
+<form class="form" th:action="@{/admin/curatore}" method="POST" th:object="${curatore}">
+	<div th:if="${#fields.hasGlobalErrors()}">
+  			<p th:each="err : ${#fields.globalErrors()}" th:text="${err}">...</p>
+		</div>
+		<div>
+			<div>
+				<span>Nome:</span>
+				<div><input type="text" th:field="*{nome}" /></div>
+				<span th:if="${#fields.hasErrors('nome')}" th:errors="*{nome}"></span>
+			</div>
+			<br>
+			<div>
+				<span>Cognome:</span>
+				<div><input type="text" th:field="*{cognome}" /></div>
+				<span th:if="${#fields.hasErrors('cognome')}" th:errors="*{cognome}"></span>
+			</div>
+			<br>
+			<div>
+				<span>Luogo di nascita:</span>
+				<div><input type="text" th:field="*{luogoNascita}" /></div>
+				<span th:if="${#fields.hasErrors('luogoNascita')}" th:errors="*{luogoNascita}"></span>
+			</div>
+			<br>
+			<div>
+				<span>Data di nascita:</span>
+				<div><input type="date" th:field="*{dataNascita}" /></div>
+				<span th:if="${#fields.hasErrors('dataNascita')}" th:errors="*{dataNascita}"></span>
+			</div>
+			<br>
+			
+				<span>Email:</span>
+				<div><input type="text" th:field="*{email}" /></div>
+				<span th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></span>
+			</div>
+			<br>
+			<div>
+				<span><button type="submit">Invio</button></span>
+			</div>
+		
+</form> 
+</div>
+<footer th:replace="fragments/base.html :: fondo(home)"></footer>
+</div>
+
+</body>
+</html>

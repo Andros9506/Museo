@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/base.html :: headerfiles(title=${opera.nome})"></head>
+<body>
+<header th:replace="fragments/base.html :: intestazione"></header>
+
+<div class="body_interno">
+<nav th:replace="fragments/base.html :: nav"></nav>
+
+	<div class="body_altezza">
+	
+	<div th:if="${#authorization.expression('isAuthenticated()')}">  
+	
+			<div>
+			<form action="#" th:object="${opera}" th:action="@{/admin/opera/{id}(id=${opera.id})}">
+			<input type="hidden" name="_method" value="modifica">
+		  	<button type="submit" id="submitButton">Aggiorna i dati</button>
+			</form>
+				</div>
+			<div>
+			<form action="#" th:object="${opera}" th:action="@{/admin/deleteOpera/{id}(id=${opera.id})}" th:method="delete" >
+			<input type="hidden" name="_method" value="delete">
+		  	<button type="submit" id="submitButton">Cancella</button>
+			</form>
+			 </div>
+			 </div>
+			 <div th:unless="${#authorization.expression('isAuthenticated()')}"> </div>
+	 
+		<h1 th:text=*{opera.nome}>...</h1>
+    	<div class="opera_testi">
+    	<div th:object="${opera}">
+    	
+    						<div th:if="*{artista}">
+										<Strong>Artista: </Strong><a href="artista.html" 
+											th:href="@{'/artista' + '/' + *{artista.id}}"
+											th:text="|*{artista.nome} *{artista.cognome}|"></a><br>
+    						</div><div th:unless="${artista}"></div>
+    						
+				<div><strong>Data di realizzazione: </strong><span th:text="*{dataRealizzazione}"></span></div><br>
+				<img class="opera_immagine" th:src="@{${'/images/' + opera.immagine + '.jpg'}}"/>
+			<p class="opera_descrizione" th:text="*{descrizione}">descrizione </p>
+    	</div>
+   		
+    	<div th:unless="${opera}">Questo prodotto non esiste</div>
+    	</div>
+	</div>
+<footer th:replace="fragments/base.html :: fondo(home)"></footer>
+</div>
+</body>
+</html>

@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/base.html :: headerfiles(title='Collezione')"></head>
+<body>
+<header th:replace="fragments/base.html :: intestazione"></header>
+
+<div class="body_interno">
+<nav th:replace="fragments/base.html :: nav"></nav>
+
+<div class="body_altezza">
+    	<h1>Lista curatori</h1>
+			<div><br></div>
+    	
+    	<div th:if="${#authorization.expression('isAuthenticated()')}"> 
+    	
+    	<ul class="lista">
+    	
+    		<li th:each="curatore : ${curatori}">
+    			<a href="curatore.html"
+    				th:href="@{'/curatore' + '/' + ${curatore.matricola}}"
+    				th:text="|${curatore.nome} ${curatore.cognome}|">nome curatore</a>
+    				
+    				
+    				<div>
+					<form action="#" th:object="${curatore}" th:action="@{/admin/curatore/{id}(id=${curatore.matricola})}">
+					<input type="hidden" name="_method" value="update">
+				  	<button type="submit" id="submitButton">Aggiorna i dati</button>
+					</form>
+					 </div> 
+					 <div>
+					<form action="#" th:object="${curatore}" th:action="@{/admin/deleteCuratore/{id}(id=${curatore.matricola})}" th:method="delete" >
+					<input type="hidden" name="_method" value="delete">
+				  	<button type="submit" id="submitButton">Cancella</button>
+					</form>
+					 </div>
+					 <div><br><br></div>
+    				
+    				
+    				
+    				
+    				<div><br><br></div>
+    		</li>
+    	
+    	<div th:unless="${#authorization.expression('isAuthenticated()')}">
+    	<ul class="lista">
+    	
+    		<li th:each="curatore : ${curatori}">
+    			<a href="curatore.html"
+    				th:href="@{'/curatore' + '/' + ${curatore.matricola}}"
+    				th:text="|${curatore.nome} ${curatore.cognome}|">nome curatore</a>
+    				<div><br><br></div>
+    		</li>
+    		
+    	</ul>
+    	</div>
+</div>  
+
+<footer th:replace="fragments/base.html :: fondo(home)"></footer>
+</div>  
+</body>
+</html>

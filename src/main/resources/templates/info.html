@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/base.html :: headerfiles(title='Informazioni')"></head>
+<body>
+<header th:replace="fragments/base.html :: intestazione"></header>
+
+<div class="body_interno">
+	<nav th:replace="fragments/base.html :: nav"></nav>
+	<div class="body_altezza">
+		<div class="info">
+			<br><div><strong>Indirizzo: </strong>Via delle arti, 151, 00054, Fiumicino, RM.</div><br>
+				<div><strong>Per info e prenotazioni: </strong>Tel. 0665329804 - Email: museodartefiumicino@comune.fiumicino.it  </div><br>
+				<div><strong>Orari</strong><br>Tutti i giorni ore 9.30-19.30<br>24 e 31 dicembre ore 9.30-14.00<br>Ultimo ingresso un'ora prima della chiusura<br>
+					Giorni di chiusura<br>1 gennaio, 1 maggio e 25 dicembre</div><br>
+		<div class="prezzi"><strong>Listino prezzi:</strong>
+			<ul>
+				<li>€ 11 biglietto intero</li>
+				<li>€ 5 biglietto ridotto</li>
+				<li>€ 3 biglietto studente universitario</li>
+				<li>€ 22 biglietto speciale famiglie(2 adulti figli al di sotto dei 18 anni)</li>
+			</ul>
+		</div>
+</div>
+	</div>
+<footer th:replace="fragments/base.html :: fondo(home)"></footer>
+</div>
+</body>
+</html>

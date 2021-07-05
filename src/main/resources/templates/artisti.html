@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/base.html :: headerfiles(title='Collezione')"></head>
+<body>
+
+<header th:replace="fragments/base.html :: intestazione"></header>
+
+<div class="body_interno">
+
+<nav th:replace="fragments/base.html :: nav"></nav>
+
+<div class="body_altezza">
+<div class="titolo_artisti">
+
+    	<strong>Lista artisti</strong>
+    	<div><br></div>
+    	
+    	<div th:if="${#authorization.expression('isAuthenticated()')}"> 
+    	
+    	<ul class="lista">
+    		<li th:each="artista : ${artisti}">
+    			<a href="artista.html"
+    				th:href="@{'/artista' + '/' + ${artista.id}}"
+    				th:text="|${artista.nome} ${artista.cognome}|">nome e cognome</a>
+    				<div>
+					<form action="#" th:object="${artista}" th:action="@{/admin/artista/{id}(id=${artista.id})}">
+					<input type="hidden" name="_method" value="delete">
+				  	<button type="submit" id="submitButton">Aggiorna i dati</button>
+					</form>
+					 </div> 
+					 <div>
+					<form action="#" th:object="${artista}" th:action="@{/admin/deleteArtista/{id}(id=${artista.id})}" th:method="delete" >
+					<input type="hidden" name="_method" value="delete">
+				  	<button type="submit" id="submitButton">Cancella</button>
+					</form>
+					 </div>
+					 <div><br><br></div>
+    		</li>
+    	</ul>
+    	</form>
+    	</div>
+    	<div th:unless="${#authorization.expression('isAuthenticated()')}">
+    	<ul class="lista">
+    		<li th:each="artista : ${artisti}">
+    			<a href="artista.html"
+    				th:href="@{'/artista' + '/' + ${artista.id}}"
+    				th:text="|${artista.nome} ${artista.cognome}|">nome e cognome</a>
+    				<div><br><br></div>
+    		</li>
+    	</ul>
+    	</div>
+    	
+</div>    
+</div>
+<footer th:replace="fragments/base.html :: fondo(home)"></footer>
+</div>
+</body>
+</html>

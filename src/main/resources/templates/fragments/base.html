@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:fragment="headerfiles(title)">
+	<meta charset="UTF-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link th:href="@{/css/style.css}" rel="stylesheet">
+	<title th:text="${title}"></title>
+	<link rel="icon" th:href="@{/images/museo_icona.png}"/>
+</head>
+<body>
+	<header class="nome_museo" th:fragment="intestazione">
+	<h1>Museo d'arte di Fiumicino</h1>
+	</header>
+	<nav id = "flex-container" th:fragment="nav">
+	<ul>
+	<li><a class="elem" th:href="@{/collezioni}">Collezioni</a></li>
+	<li><a class="elem" th:href="@{/artisti}">Artisti</a></li>
+	<li><a class="elem" th:href="@{/opere}">Opere</a></li>
+	<li><a class="elem" th:href="@{/info}">Info</a></li>
+	</ul>
+	</nav>
+	
+	<footer th:fragment="fondo(home)">
+	<span th:if="${#authorization.expression('isAuthenticated()')}">  
+    <a th:href="@{/default}">Home</a> 
+            </span>  
+            <span th:unless="${#authorization.expression('isAuthenticated()')}">  
+                <a th:href="@{/home}">Home</a>
+            </span>
+		<a class="goBack" href="javascript:history.go(-1)" 
+onMouseOver="self.status=document.referrer;return true">
+Torna indietro</a>
+	</footer>
+</body>
+</html>

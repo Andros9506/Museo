@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/base.html :: headerfiles(title='Museo d&#180arte')"></head>
+<body>
+
+<header th:replace="fragments/base.html :: intestazione"></header>
+
+<div class="body_interno">
+
+<nav th:replace="fragments/base.html :: nav"></nav>
+<div class="body_altezza">
+
+<form class="form" th:action="@{/admin/collezione/{id}(id=${collezione.id})}" method="POST" th:object="${collezione}">
+
+	<div th:if="${#fields.hasGlobalErrors()}">
+  			<p th:each="err : ${#fields.globalErrors()}" th:text="${err}">...</p>
+		</div>
+		<div>
+			<div>
+				<span>Nome:</span>
+				<div><input type="text" th:field="*{nome}" /> </div>
+				<span th:if="${#fields.hasErrors('nome')}" th:errors="*{nome}"></span>
+			</div>
+			<br>
+			<div>
+				<span>Selezione curatore:</span>
+				<select  th:field="*{curatore.matricola}">
+						  <option value="0">Collezione</option>
+                    <option 
+                        th:each="curatore : ${curatori}" 
+                        th:value="${curatore.matricola}"
+                        th:selected="${curatore.matricola eq lastselected}"
+                        th:text="|${curatore.nome} ${curatore.cognome}"></option>
+				</select>
+			</div>
+			<br>
+			
+			<div>
+				<span>Descrizione:</span>
+				<div><textarea class="desc_bio" th:field="*{descrizione}" /></div>
+				<span th:if="${#fields.hasErrors('descrizione')}" th:errors="*{descrizione}"></span>
+			</div>
+			<br>
+			
+			<div>
+				<span><button type="submit">Invio</button></span>
+			</div>
+		</div>
+</form> 
+
+</div>
+<footer th:replace="fragments/base.html :: fondo(home)"></footer>
+</div>
+</body>
+</html>

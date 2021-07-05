@@ -1,0 +1,197 @@
+
+body{
+	background-image: url(/images/Sfondo.jpg);
+	background-size: 100%;
+	background-attachment: fixed;
+}
+
+.nome_museo{
+	font-size: 20px;
+}
+
+.nome_museo > h1{
+	text-shadow: 0px 0px 5px black, 2px 0px 5px black, 0px 2px 5px black, 3px 3px 5px black;
+	margin-left: 30px;
+}
+.body_interno{
+	float:center;
+	display:block;
+	background-color:#30303099/* #191a1c99*/;
+	width:100%;
+	max-width: 1100px;
+	height:auto;
+	margin:auto;
+}
+
+.body_altezza{
+	height:100%;
+	margin-left: 10px;
+}
+
+.tabella_home{
+ 	display:grid;
+ 	grid-template-columns: auto auto;
+ 	grid-column-gap: 50px;
+ 	grid-row-gap: 10px;
+ 	width: 50%;
+  	height: 50%;
+ 	margin: 0 auto;
+ 	padding:10px;
+}
+
+.tabella_home div img{
+    max-width: 100%;
+    max-height: 100%;
+ 	margin-top:100px;
+}
+
+.benvenuto{
+	font-size: 20px;
+}
+#flex-container{
+	border: 5px solid #ff9b58;
+	border-radius: 10px;
+}
+h1{
+	color:white;
+}
+div{
+	color:white;
+}
+
+ a{
+	color: white;
+}
+
+ a:hover{
+	color: #dedede;
+}
+header{
+	height:50px;
+	width: 100%;
+	margin-bottom: 40px;
+}
+nav{
+	background-color: #30303099;
+	margin-bottom: 70px;
+	
+}
+
+.elem{
+	position:static;
+}
+nav > ul{
+	list-style-type: none;
+	overflow: hidden;
+	margin:0;
+	padding:0;
+	align-items: center;
+}
+nav > ul > li > a{
+	display:block;
+	float:left;
+	color:white;
+	text-decoration: none;
+	padding: 20px 30px;
+	margin:20px;
+	margin-left: 100px;
+	border: 5px solid #ff9b58;
+	font-size: 20px;
+	font-weight: bold;
+	font-style: italic;
+	align-items: center;
+	
+}
+.opera_immagine{
+	float:left;
+	height:auto;
+	width:30%;
+	margin:20px;
+	margin-top:30px;
+	margin-bottom: 10px;
+}
+
+.opera_testi{
+	font-size: 25px;
+}
+.opera_descrizione{
+	font-size: 20px;
+}
+.info{
+	font-size: 20px;
+	margin: auto;
+	align-items: center;
+}
+.titolo_lista{
+	font-size:40px;
+}
+.lista{
+	font-size: 20px;
+}
+
+.lista a:hover{
+	color: #dedede;
+}
+.collezione{
+	display:block;
+	width:auto;
+	height:auto;
+	max-width: 30%;
+	max-height: 50%;
+	object-position: left;
+}
+
+.collezione_testo{
+	font-size:20px;
+}
+
+.collezione_lista{
+	list-style-type: none;
+	font-size: 30px;
+}
+
+.titolo_artisti{
+	font-size:40px;
+}
+
+.testo_artista{
+	font-size: 20px;
+}
+
+.descrizione_opera{
+    min-width: 500px;
+    max-width: 1100px;
+    max-height: 500px;
+}
+
+.form{
+	margin-left: 50px;
+	font-size: 20px;
+}
+
+.form input{
+	font-size: 15px;
+}
+
+.form button{
+	font-size: 20px;
+}
+
+.desc_bio{
+	width:800px;
+	height:400px;
+}
+
+footer{
+	text-align: center;
+	border-top: 2px solid #ff9b58;
+	margin-top: 50px;
+	height: 25px;
+	width:fill;
+	font-size: 20px;
+	float:center;
+	}
+	
+.goBack{
+	margin-left: 20px;
+}

@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/base.html :: headerfiles(title='Museo d&#180arte')"></head>
+<body>
+
+<header th:replace="fragments/base.html :: intestazione"></header>
+
+<div class="body_interno">
+
+<nav th:replace="fragments/base.html :: nav"></nav>
+<div class="body_altezza">
+
+<form class="form" th:action="@{/admin/opera/{id}(id=${opera.id})}" method="POST" th:object="${opera}">
+
+	<div th:if="${#fields.hasGlobalErrors()}">
+  			<p th:each="err : ${#fields.globalErrors()}" th:text="${err}">...</p>
+		</div>
+		<div>
+			<div>
+				<span>Nome:</span>
+				<div><input type="text" th:field="*{nome}" /> </div>
+				<span th:if="${#fields.hasErrors('nome')}" th:errors="*{nome}"></span>
+			</div>
+			<br>
+			<div>
+				<span>Data di realizzazione:</span>
+				<div><input type="text" th:field="*{dataRealizzazione}" /></div>
+				<span th:if="${#fields.hasErrors('dataRealizzazione')}" th:errors="*{dataRealizzazione}"></span>
+			</div>
+			<br>
+			<div>
+				<span>Immagine:</span>
+				<div><input type="text" th:field="*{immagine}" /></div>
+				<span th:if="${#fields.hasErrors('immagine')}" th:errors="*{immagine}"></span>
+			</div>
+			<br>
+			<div>
+				<span>Selezione artista:</span>
+				<select  th:field="*{artista.id}">
+						  <option value="0">Artisti</option>
+                    <option 
+                        th:each="artista : ${artista}" 
+                        th:value="${artista.id}"
+                        th:selected="${artista.id eq lastselected}"
+                        th:if="${artista.cognome}"
+                        th:text="|${artista.nome} ${artista.cognome}|"></option>
+                    <option 
+                        th:each="artista : ${artista}" 
+                        th:value="${artista.id}"
+                        th:selected="${artista.id eq lastselected}"
+                        th:unless="${artista.cognome}"
+                        th:text="${artista.nome}"></option>
+				</select>
+			</div>
+			<br>
+			<div>
+				<span>Selezione collezione:</span>
+				<select  th:field="*{collezione.id}">
+						  <option value="0">Collezione</option>
+                    <option 
+                        th:each="collezione : ${collezione}" 
+                        th:value="${collezione.id}"
+                        th:selected="${collezione.id eq lastselected}"
+                        
+                        th:text="${collezione.nome}"></option>
+				</select>
+			</div>
+			<br>
+			<div>
+				<span>Descrizione:</span>
+				<div><textarea class="desc_bio" th:field="*{descrizione}" /></div>
+				<span th:if="${#fields.hasErrors('descrizione')}" th:errors="*{descrizione}"></span>
+			</div>
+			<br>
+			<div>
+				<span><button type="submit">Invio</button></span>
+			</div>
+		</div>
+</form> 
+
+</div>
+<footer th:replace="fragments/base.html :: fondo(home)"></footer>
+</div>
+</body>
+</html>

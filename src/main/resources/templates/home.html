@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/base.html :: headerfiles(title='Museo d&#180arte')"></head>
+<body>
+
+<header th:replace="fragments/base.html :: intestazione"></header>
+
+<div class="body_interno">
+
+<nav th:replace="fragments/base.html :: nav"></nav>
+<div class="body_altezza">
+<div class="benvenuto">
+<h1>Benvenuta/o nel sito del museo d'arte di Fiumicino.</h1>
+
+<div>Da qui potrai visualizzare le informazioni sulle collezioni del museo, gli artisti e le loro opere</div>
+
+<div class="tabella_home">
+		<div>
+			<img th:src="@{${'/images/' + 'persistenzaMemoria' + '.jpg'}}"/>
+			<img th:src="@{${'/images/' + 'chiesaAuvers' + '.jpg'}}"/>
+		</div>
+		<div>
+			<img th:src="@{${'/images/' + 'abbraccio' + '.jpg'}}"/>
+			<img th:src="@{${'/images/' + 'avignon' + '.jpg'}}"/>
+		</div>
+	
+	</div>
+				
+</div>
+</div>
+<footer th:replace="fragments/base.html :: fondo(home)"></footer>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/base.html :: headerfiles(title='Opere')"> </head>
+<body>
+	<header th:replace="fragments/base.html :: intestazione"></header>
+	<div class="body_interno">
+	
+	<nav th:replace="fragments/base.html :: nav"></nav>
+	
+	<div class="body_altezza">
+	
+	
+	<div th:if="${#authorization.expression('isAuthenticated()')}">  
+	
+			<h1>Lista delle opere</h1>
+    	<br>
+		
+		<ul class="lista">
+			<li th:each="opera : ${opere}">
+				<a href="opera.html" 
+				   th:href="@{'/opera' + '/' + ${opera.id}}"
+				   th:text="${opera.nome}"> </a>
+		
+				<div>
+					<form action="#" th:object="${opera}" th:action="@{/admin/opera/{id}(id=${opera.id})}">
+					<input type="hidden" name="_method" value="delete">
+				  	<button type="submit" id="submitButton">Aggiorna i dati</button>
+					</form>
+				</div>
+			 <div>
+			<form action="#" th:object="${opera}" th:action="@{/admin/deleteOpera/{id}(id=${opera.id})}" th:method="delete" >
+			<input type="hidden" name="_method" value="delete">
+		  	<button type="submit" id="submitButton">Cancella</button>
+			</form>
+			 </div>
+			 <div><br><br></div>
+			 	</li>
+			 	
+		</ul>
+		
+			 </div>
+			 
+			 
+			 <div th:unless="${#authorization.expression('isAuthenticated()')}"> 
+	<div>
+	<div><h1><a th:href="@{/periodi}">Opere per anno</a></h1></div><br>
+    	<h1>Lista delle opere</h1>
+    	<br>
+		
+		<ul class="lista">
+			<li th:each="opera : ${opere}">
+				<a href="opera.html" 
+				   th:href="@{'/opera' + '/' + ${opera.id}}"
+				   th:text="${opera.nome}"> </a>
+				   <div><br><br></div>
+			</li>
+		</ul>
+	</div>
+	</div>
+	</div>
+	<footer th:replace="fragments/base.html :: fondo(home)"></footer>
+	<div>
+</body>
+</html>
